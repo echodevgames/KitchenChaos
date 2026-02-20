@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKitchenObjectParent
 {
     public static PlayerController Instance { get; private set; }
 
@@ -21,8 +21,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private LayerMask countersLayerMask;
 
+    [SerializeField] private Transform kitchenObjectHoldPoint;
+
     private bool isWalking = false;
     private Vector3 lastInteractDir;
+
+
+    private KitchenObject kitchenObject;
 
     private ClearCounter selectedCounter;
 
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         if (selectedCounter != null)
         {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
@@ -162,5 +167,29 @@ public class PlayerController : MonoBehaviour
         });
     }
 
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return kitchenObjectHoldPoint;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
+    }
+
+    public void ClearKitchenObject()
+    {
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return kitchenObject != null;
+    }
 }
 //----- PlayerController.cs END-----
