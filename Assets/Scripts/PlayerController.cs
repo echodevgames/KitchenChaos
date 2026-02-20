@@ -1,4 +1,5 @@
 //----- PlayerController.cs START-----
+using System;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting.InputSystem;
 using UnityEngine;
@@ -7,6 +8,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+
+    public event EventHandler <OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
 
@@ -15,7 +24,18 @@ public class PlayerController : MonoBehaviour
     private bool isWalking = false;
     private Vector3 lastInteractDir;
 
-    private ClearCounter clearCounter;
+    private ClearCounter selectedCounter;
+
+
+    private void Awake() 
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("There is more than one PlayerController! " + transform + " - " + Instance); //the tutorial did NOT use transform and instance here, but I think it is useful to know which player controller is the problem if there are more than one
+        }
+        Instance = this;
+    }
+
 
     private void Start() 
     {
@@ -24,25 +44,9 @@ public class PlayerController : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-
-        Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
-
-
-        if (moveDir != Vector3.zero)
+        if (selectedCounter != null)
         {
-            lastInteractDir = moveDir;
-        }
-
-
-        float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
-        {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
-            {
-                // Has CleaarCounter
-                clearCounter.Interact();
-            }
+            selectedCounter.Interact();
         }
     }
 
@@ -76,7 +80,19 @@ public class PlayerController : MonoBehaviour
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 // Has CleaarCounter
+                if (clearCounter != selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);
+                }
             }
+            else
+            {
+                SetSelectedCounter(null);
+            }
+        }
+        else 
+        {
+            SetSelectedCounter(null);
         }
     }
     private void HandleMovement()
@@ -135,6 +151,15 @@ public class PlayerController : MonoBehaviour
 
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
 
+    }
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
     }
 
 }
