@@ -23,4 +23,5 @@ public class ContainerCounterVisual : MonoBehaviour
         animator.SetTrigger(OPEN_CLOSE);
     }
 
+
 }

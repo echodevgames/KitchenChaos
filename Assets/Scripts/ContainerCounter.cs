@@ -11,10 +11,14 @@ public class ContainerCounter : BaseCounter
 
     public override void Interact(PlayerController playerController)
     {  
+        if (!playerController.HasKitchenObject())
+        {
+            // PLayer is not carrying anything, so give them the object on the counter
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
             kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(playerController);
 
            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
+        }
     }
 
 }
