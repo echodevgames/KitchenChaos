@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4301c121f8442fe45b00ee4b75804876, type: 3}
   m_Name: CheseBlock - CheeseSlices
   m_EditorClassIdentifier: Assembly-CSharp::CuttingRecipeSO
-  input: {fileID: 11400000, guid: eb29123208040664589dbf9dabf8971f, type: 2}
-  output: {fileID: 11400000, guid: 2f5a98329628db541b6c152b58c2b422, type: 2}
+  input: {fileID: 11400000, guid: 6acf83bec2c95344f993df35bd0008c8, type: 2}
+  output: {fileID: 11400000, guid: 1b9b72062364dc9449fabaf1b19824b9, type: 2}
