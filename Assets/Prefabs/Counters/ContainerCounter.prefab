@@ -153,7 +153,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1046215730255653440}
+      addedObject: {fileID: 9206340797917894290}
   m_SourcePrefab: {fileID: 100100000, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
 --- !u!4 &6079185400523637246 stripped
 Transform:
@@ -165,7 +165,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: 9a9137fa2b035d34e881701d2c178192, type: 3}
   m_PrefabInstance: {fileID: 7776707129173255509}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1046215730255653440
+--- !u!114 &9206340797917894290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6079185400523637247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733524606bf385343a38ff5112458f28, type: 3}
+  m_Script: {fileID: 11500000, guid: 30ef0132856c2cb459675ff397bb79de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContainerCounterVisual
   containerCounter: {fileID: 1431181789280938323}
