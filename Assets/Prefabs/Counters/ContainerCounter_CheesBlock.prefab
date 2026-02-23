@@ -56,8 +56,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContainerCounter_CheesBlock
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1046215730255653440, guid: 2dd5c9f3377b86646bdffdca534e6f63, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6079185400523637247, guid: 2dd5c9f3377b86646bdffdca534e6f63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3298757070537859632}
   m_SourcePrefab: {fileID: 100100000, guid: 2dd5c9f3377b86646bdffdca534e6f63, type: 3}
+--- !u!114 &633418709904255123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1431181789280938323, guid: 2dd5c9f3377b86646bdffdca534e6f63, type: 3}
+  m_PrefabInstance: {fileID: 1951974764271944128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bb1622108960f4987078ac0503f3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContainerCounter
+--- !u!1 &5713753312588136511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6079185400523637247, guid: 2dd5c9f3377b86646bdffdca534e6f63, type: 3}
+  m_PrefabInstance: {fileID: 1951974764271944128}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3298757070537859632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713753312588136511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ef0132856c2cb459675ff397bb79de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContainerCounterVisual
+  containerCounter: {fileID: 633418709904255123}
