@@ -5,11 +5,15 @@ public class DeliveryCounter : BaseCounter
 
     public override void Interact(PlayerController playerController)
     {
-        if (!playerController.HasKitchenObject()) return;
-        if (playerController.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+        if (playerController.HasKitchenObject())
         {
-            //DeliveryManager.Instance.DeliverRecipe(plateKitchenObject);
-            playerController.GetKitchenObject().DestroySelf();
+            if (playerController.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+            {
+                // Only accept plates, not other kitchen objects
+
+                DeliveryManager.Instance.DeliverRecipe(plateKitchenObject);
+                playerController.GetKitchenObject().DestroySelf();
+            }
         }
     }
 }
