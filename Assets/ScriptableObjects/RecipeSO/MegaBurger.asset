@@ -15,7 +15,7 @@ MonoBehaviour:
   kitchenObjectSOList:
   - {fileID: 11400000, guid: cda66f6e0b09c1a49a67a32807108a2e, type: 2}
   - {fileID: 11400000, guid: 39a48f596a7ae9c44bca6f7ff4dffc21, type: 2}
-  - {fileID: 11400000, guid: 6acf83bec2c95344f993df35bd0008c8, type: 2}
+  - {fileID: 11400000, guid: 1b9b72062364dc9449fabaf1b19824b9, type: 2}
   - {fileID: 11400000, guid: 3dc6ff84e007e714a926648e184ab8e8, type: 2}
   - {fileID: 11400000, guid: 2f5a98329628db541b6c152b58c2b422, type: 2}
   recipeName: Mega Burger
