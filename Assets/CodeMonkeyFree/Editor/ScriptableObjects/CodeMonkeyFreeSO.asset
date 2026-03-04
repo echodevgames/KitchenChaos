@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.01
   subtype: kitchenchaos
-  lastShownTimestamp: 1772487141
+  lastShownTimestamp: 1772582021
   lastUpdateResponse:
     version: 1.01
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1772487142
+  checkedLastUpdateTimestamp: 1772582021
   lastQOTDResponse:
     questionId: 277
     questionText: 'What is the value stored in percentage?
@@ -35,18 +35,18 @@ MonoBehaviour:
     answerC: 2.5f
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1772487142
+  lastQotdTimestamp: 1772582021
   lastDynamicHeaderResponse:
     topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/gameDevReport_2.png
     topText: Stay up to date with the latest in Game Dev straight to your inbox!
     topLink: gamedevreport
     bottomText: My 10+ Years of C# Knowledge in 1 Course!
     bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1772487142
+  lastDynamicHeaderTimestamp: 1772582021
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1772487142
+  websiteLatestMessageTimestamp: 1772582021
   websiteLatestVideos:
     videos:
     - youTubeId: uNNz1kOsLVw
@@ -57,4 +57,4 @@ MonoBehaviour:
       title: Learn how to write PRO level code with this DEEP DIVE!
     - youTubeId: Lm_YTrn9KYc
       title: Unity HDRP is DEAD!
-  websiteLatestVideosTimestamp: 1772487142
+  websiteLatestVideosTimestamp: 1772582021
