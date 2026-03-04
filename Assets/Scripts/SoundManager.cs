@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 
@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+
+
 
         DeliveryManager.Instance.OnRecipeFailed += DeliveryManager_OnRecipeFailed;
         DeliveryManager.Instance.OnRecipeSuccess += DeliveryManager_OnRecipeSuccess;
@@ -70,13 +72,13 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.deliveryFail, deliveryCounter.transform.position);
     }
 
-    private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
+    private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+        AudioSource.PlayClipAtPoint(audioClip, position, volumeMultiplier * volume);
     }
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volumeMultiplier = 1f)
     {
-        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volumeMultiplier * volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volumeMultiplier);
     }
 
     public void PlayFootstepsSound(Vector3 position, float volume)
