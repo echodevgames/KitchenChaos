@@ -24,9 +24,9 @@ public class KitchenGameManager : MonoBehaviour
 
     private State state;
 
-    private float countDownToStartTimer = 3f;
+    private float countDownToStartTimer = 1f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 30f;
+    private float gamePlayingTimerMax = 300f;
     private bool isGamePaused = false;
 
     private void Awake()
@@ -39,6 +39,10 @@ public class KitchenGameManager : MonoBehaviour
     {
         GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+        
+        //DEBUG TRIGGER GAME START AUTOMATICALLY (I needed to turn of the TutorialUI too for some reason)
+        state = State.CountdownToStart;
+        OnStateChanged?.Invoke(this, new EventArgs());
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)

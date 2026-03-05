@@ -1,14 +1,13 @@
 //----- PlayerController.cs START-----
 using System;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.InputSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Unity.Netcode;
 
 
-public class PlayerController : MonoBehaviour, IKitchenObjectParent
+public class PlayerController : NetworkBehaviour, IKitchenObjectParent
 {
-    public static PlayerController Instance { get; private set; }
+    //public static PlayerController Instance { get; private set; }
+
 
 
     public event EventHandler OnPickedSomething;
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     }
 
     [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform kitchenObjectHoldPoint;
 
@@ -32,18 +30,14 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void Awake() 
     {
-        if (Instance != null)
-        {
-            Debug.LogError("There is more than one PlayerController! " + transform + " - " + Instance); //the tutorial did NOT use transform and instance here, but I think it is useful to know which player controller is the problem if there are more than one
-        }
-        Instance = this;
+        //Instance = this;
     }
 
 
     private void Start()
     {
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
-        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+        GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+        GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -80,7 +74,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     }
     private void HandleInteractions()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
 
         Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
 
@@ -115,7 +109,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     }
     private void HandleMovement()
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
 
         Vector3 moveDir = new Vector3(inputVector.x, 0, inputVector.y);
         //transform.position += moveDir * moveSpeed * Time.deltaTime;
