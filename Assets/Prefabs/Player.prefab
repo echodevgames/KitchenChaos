@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1553936716578983494}
   - component: {fileID: 6222559651717714430}
   - component: {fileID: -3690289325630037689}
+  - component: {fileID: 5720538228929254208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -81,7 +82,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  gameInput: {fileID: 0}
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -114,6 +114,32 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &5720538228929254208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674619045239583522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6161a55e1d87c4d4f8b9d3272f64475c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Unity.Multiplayer.Samples.Utilities.ClientAuthority.ClientNetworkTransform
+  SyncPositionX: 1
+  SyncPositionY: 0
+  SyncPositionZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1001 &2713922646288093354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,6 +199,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3294758251327466535, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6669418950137765702}
+    - targetCorrespondingSourceObject: {fileID: 3294758251327466535, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5280142459975723867}
   m_SourcePrefab: {fileID: 100100000, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
 --- !u!1 &581139624593390733 stripped
 GameObject:
@@ -192,9 +221,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
   playerController: {fileID: 1553936716578983494}
+--- !u!114 &5280142459975723867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581139624593390733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2045245e64b89d47826f1c7539cc76f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OwnerNetworkAnimator
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 7195434245985797044}
 --- !u!4 &581139624593390734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+  m_PrefabInstance: {fileID: 2713922646288093354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7195434245985797044 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5076290250188903198, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
   m_PrefabInstance: {fileID: 2713922646288093354}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5600409240422654595
