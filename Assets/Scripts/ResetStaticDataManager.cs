@@ -9,5 +9,7 @@ public class ResetStaticDataManager : MonoBehaviour
         BaseCounter.ResetStaticData();
 
         TrashCounter.ResetStaticData();
+
+        PlayerController.ResetStaticData();
     }
 }
