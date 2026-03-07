@@ -1,5 +1,5 @@
 using System;
-
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,8 +16,21 @@ public class ContainerCounter : BaseCounter
             // PLayer is not carrying anything, so give them the object on the counter
             KitchenObject.SpawnKitchenObject(kitchenObjectSO, playerController);
 
-            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
+
+            InteractLogicServerRpc();
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void InteractLogicServerRpc()
+    {
+        InteractLogicClientRpc();
+    }
+
+    [ClientRpc]
+    private void InteractLogicClientRpc()
+    {
+        OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
     }
 
 }
