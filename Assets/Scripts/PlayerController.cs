@@ -139,7 +139,7 @@ public class PlayerController : NetworkBehaviour, IKitchenObjectParent
         //transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         float playerRadius = 0.7f;
-        float playerHeight = 2f;
+        //float playerHeight = 2f;
         float moveDistance = moveSpeed * Time.deltaTime;
         bool canMove = !Physics.BoxCast(transform.position, Vector3.one *playerRadius, moveDir, Quaternion.identity,moveDistance, collisionsLayerMask);
 
