@@ -570,7 +570,7 @@ MonoBehaviour:
   backgroundImage: {fileID: 8835333698860041041}
   iconImage: {fileID: 650256184962684644}
   messageText: {fileID: 5250398375215899333}
-  successColor: {r: 0.18635954, g: 0.7584905, b: 0.01001776, a: 0}
+  successColor: {r: 0.18635954, g: 0.7584905, b: 0.01001776, a: 1}
   failedColor: {r: 0.5999999, g: 0.039622553, b: 0.039622553, a: 1}
   successSprite: {fileID: 21300000, guid: 6c562ac6d3e47ff4794df31886c6d864, type: 3}
   failedSprite: {fileID: 21300000, guid: 0d6e1281049dccc4189bf308b2ccf331, type: 3}
@@ -666,6 +666,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1821959770231010022, guid: 28f96fc510e1ad341938f9adc84c9fe7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 951099334
+      objectReference: {fileID: 0}
     - target: {fileID: 1851627583649635383, guid: 28f96fc510e1ad341938f9adc84c9fe7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
