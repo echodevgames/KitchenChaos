@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using NUnit.Framework.Constraints;
+using UnityEngine.SceneManagement;
 
 public class KitchenGameManager : NetworkBehaviour
 {
@@ -14,12 +15,8 @@ public class KitchenGameManager : NetworkBehaviour
     public event EventHandler OnStateChanged;
     public event EventHandler OnLocalGamePaused;
     public event EventHandler OnLocalGameUnpaused;
-
     public event EventHandler OnMultiplayerGameUnpaused;
     public event EventHandler OnMultiplayerGamePaused;
-
-
-
     public event EventHandler OnLocalPlayerReadyChanged;
 
 
@@ -32,18 +29,19 @@ public class KitchenGameManager : NetworkBehaviour
         GameOver,
     }
 
+    [SerializeField] private Transform playerPrefab;
+
+
+
     private NetworkVariable <State> state = new NetworkVariable<State>(State.WaitingToStart);
     private bool isLocalPlayerReady;
-
     private NetworkVariable<float> countDownToStartTimer = new NetworkVariable<float> (3f);
     private NetworkVariable<float> gamePlayingTimer = new NetworkVariable<float> (0f);
     private float gamePlayingTimerMax = 90f;
     private bool isLocalGamePaused = false;
     private NetworkVariable<bool> isGamePaused = new NetworkVariable<bool>(false);
-
     private Dictionary<ulong, bool> playerReadyDictionary;
     private Dictionary<ulong, bool> playerPausedDictionary;
-
     private bool autoTestGamePauseState;
 
 
@@ -71,6 +69,16 @@ public class KitchenGameManager : NetworkBehaviour
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientDisconnectCallback;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+        }
+    }
+
+    private void SceneManager_OnLoadEventCompleted(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            Transform playerTransform = Instantiate(playerPrefab);
+            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
         }
     }
 
