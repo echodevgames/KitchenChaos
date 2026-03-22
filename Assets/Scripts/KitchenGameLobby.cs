@@ -13,6 +13,9 @@ public class KitchenGameLobby : MonoBehaviour
     public static KitchenGameLobby Instance { get; private set; }
 
     private Lobby joinedLobby;
+    private float heartbeatTimer;
+
+
     private void Awake()
     {
         Instance = this;
@@ -33,6 +36,31 @@ public class KitchenGameLobby : MonoBehaviour
 
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
         }
+    }
+
+    private void Update()
+    {
+        HandleHeartbeat();
+    }
+
+    private void HandleHeartbeat()
+    {
+        if (IsLobbyHost())
+        {
+            heartbeatTimer -= Time.deltaTime;
+            if (heartbeatTimer <= 0f)
+            {
+                float heartbeatTimerMax = 15f;
+                heartbeatTimer = heartbeatTimerMax;
+
+                LobbyService.Instance.SendHeartbeatPingAsync(joinedLobby.Id);
+            }
+        }
+    }
+
+    private bool IsLobbyHost()
+    {
+        return joinedLobby != null && joinedLobby.HostId == AuthenticationService.Instance.PlayerId;
     }
 
     public async void CreatLobby(string lobbyName, bool isPrivate)

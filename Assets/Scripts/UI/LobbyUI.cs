@@ -10,6 +10,7 @@ public class LobbyUI : MonoBehaviour
 
     [SerializeField] private Button joinCodeButton;
     [SerializeField] private TMP_InputField joinCodeInputField;
+    [SerializeField] private TMP_InputField playerNameInputField;
 
     [SerializeField] private LobbyCreateUI lobbyCreateUI;
 
@@ -32,4 +33,16 @@ public class LobbyUI : MonoBehaviour
             KitchenGameLobby.Instance.JoinWithCode(joinCodeInputField.text);
         });
     }
+    private void Start()
+    {
+        playerNameInputField.text = KitchenGameMultiplayer.Instance.GetPlayerName();
+
+        //I need to study this and understand how it works
+        playerNameInputField.onValueChanged.AddListener((string newText) =>
+        {
+            KitchenGameMultiplayer.Instance.SetPlayerName(newText);
+        });
+    }
+
+
 }
