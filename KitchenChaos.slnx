@@ -3,5 +3,6 @@
   <Project Path="CodeMonkeyFreeEditor.csproj" />
   <Project Path="IngameDebugConsole.Runtime.csproj" />
   <Project Path="CodeMonkeyFree.csproj" />
+  <Project Path="Bezi.Editor.csproj" />
   <Project Path="IngameDebugConsole.Editor.csproj" />
 </Solution>

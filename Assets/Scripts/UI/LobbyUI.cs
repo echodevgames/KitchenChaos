@@ -52,11 +52,11 @@ public class LobbyUI : MonoBehaviour
             KitchenGameMultiplayer.Instance.SetPlayerName(newText);
         });
 
-        KitchenGameLobby.Instance.OnLobbyListChanged += KitchenGameLobby_OnLobbyListChangedEventArgs;
+        KitchenGameLobby.Instance.OnLobbyListChanged += KitchenGameLobby_OnLobbyListChanged;
         UpdateLobbyList(new List<Lobby>());
     }
 
-    private void KitchenGameLobby_OnLobbyListChangedEventArgs(object sender, KitchenGameLobby.OnLobbyListChangedEventArgs e)
+    private void KitchenGameLobby_OnLobbyListChanged(object sender, KitchenGameLobby.OnLobbyListChangedEventArgs e)
     {
         UpdateLobbyList(e.lobbyList);
     }
@@ -76,6 +76,9 @@ public class LobbyUI : MonoBehaviour
             lobbyTransform.GetComponent<LobbyListSingleUI>().SetLobby(lobby);
         }
     }
-
+    private void OnDestroy()
+    {
+        KitchenGameLobby.Instance.OnLobbyListChanged -= KitchenGameLobby_OnLobbyListChanged;
+    }
 
 }

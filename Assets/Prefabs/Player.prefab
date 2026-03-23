@@ -257,6 +257,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2577332128109763119}
   m_SourcePrefab: {fileID: 100100000, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+--- !u!23 &581139624063881084 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3294758250785316822, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+  m_PrefabInstance: {fileID: 2713922646288093354}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &581139624481016357 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3294758251441920655, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
+  m_PrefabInstance: {fileID: 2713922646288093354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581139624593390733 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3294758251327466535, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
@@ -301,8 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbec5b6935d71a94d8638f8a837a1c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerVisual
-  headMeshRenderer: {fileID: 0}
-  bodyMeshRenderer: {fileID: 0}
+  headMeshRenderer: {fileID: 581139624063881084}
+  bodyMeshRenderer: {fileID: 581139624481016357}
 --- !u!4 &581139624593390734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3294758251327466532, guid: 1c5dda3c7cd3cf742afcade5419faeab, type: 3}
