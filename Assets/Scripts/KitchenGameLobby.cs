@@ -1,3 +1,4 @@
+using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
@@ -11,6 +12,14 @@ using UnityEngine;
 public class KitchenGameLobby : MonoBehaviour
 {
     public static KitchenGameLobby Instance { get; private set; }
+
+    public event EventHandler OnCreateLobbyStarted;
+    public event EventHandler OnCreateLobbyFailed;
+
+    public event EventHandler OnJoinStarted;
+    public event EventHandler OnQuickJoinFailed;
+    public event EventHandler OnJoinFailed;
+
 
     private Lobby joinedLobby;
     private float heartbeatTimer;
@@ -30,7 +39,7 @@ public class KitchenGameLobby : MonoBehaviour
         if (UnityServices.State != ServicesInitializationState.Initialized)
         {
             InitializationOptions initializationOptions = new InitializationOptions();
-            initializationOptions.SetProfile(Random.Range(0,1000).ToString());
+            initializationOptions.SetProfile(UnityEngine.Random.Range(0,1000).ToString());
 
             await UnityServices.InitializeAsync(initializationOptions);
 
@@ -65,6 +74,8 @@ public class KitchenGameLobby : MonoBehaviour
 
     public async void CreatLobby(string lobbyName, bool isPrivate)
     {
+        OnCreateLobbyStarted?.Invoke(this, EventArgs.Empty);
+
         try
         {
             //lobby service
@@ -79,10 +90,14 @@ public class KitchenGameLobby : MonoBehaviour
         catch(LobbyServiceException e) 
         {
             Debug.Log(e);
+
+            OnCreateLobbyFailed?.Invoke(this, EventArgs.Empty);
         }
     }
   public async void QuickJoin()
     {
+
+        OnJoinStarted?.Invoke(this, EventArgs.Empty);
         try
         {
             joinedLobby = await LobbyService.Instance.QuickJoinLobbyAsync();
@@ -93,11 +108,16 @@ public class KitchenGameLobby : MonoBehaviour
         catch(LobbyServiceException e)
         {
             Debug.Log(e);
+
+
+            OnQuickJoinFailed?.Invoke(this, EventArgs.Empty);
         }
     }
 
     public async void JoinWithCode(string lobbyCode)
     {
+
+        OnJoinStarted?.Invoke(this, EventArgs.Empty);
         try
         {
             joinedLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
@@ -108,6 +128,8 @@ public class KitchenGameLobby : MonoBehaviour
         catch (LobbyServiceException e)
         {
             Debug.Log(e);
+
+            OnJoinFailed?.Invoke(this, EventArgs.Empty);
         }
     }
     public async void DeleteLobby()
